@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("api/v1/organization")
 interface OrganizationResource {
     @GetMapping("/list")
-    ResponseEntity<Object> listRoute(@Valid ListOrganizationPagingRequest request);
+    ResponseEntity<Object> listOrganization(@Valid ListOrganizationPagingRequest request);
 
     @PostMapping
-    ResponseEntity<Object> createRoute(@Valid @RequestBody CreateOrganizationRequest request);
+    ResponseEntity<Object> createOrganization(@Valid @RequestBody CreateOrganizationRequest request);
 
     @PutMapping("/{id}")
-    ResponseEntity<Object> updateRoute(@Valid @RequestBody UpdateOrganizationRequest request, @PathVariable String id);
+    ResponseEntity<Object> updateOrganization(@Valid @RequestBody UpdateOrganizationRequest request, @PathVariable String id);
 }

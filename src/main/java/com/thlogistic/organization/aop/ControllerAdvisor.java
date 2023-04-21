@@ -2,6 +2,8 @@ package com.thlogistic.organization.aop;
 
 import com.thlogistic.organization.adapters.dtos.ErrorResponse;
 import com.thlogistic.organization.aop.exception.DataNotFoundException;
+import com.thlogistic.organization.aop.exception.InvalidOrganizationTypeException;
+import com.thlogistic.organization.aop.exception.InvalidProviderTypeException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -26,6 +28,20 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
     @ExceptionHandler(DataNotFoundException.class)
     public ResponseEntity<Object> handleNotFoundException(
             DataNotFoundException ex, WebRequest request) {
+        Map<String, Object> response = ErrorResponse.errorResponse(ex.getMessage(), null);
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(InvalidOrganizationTypeException.class)
+    public ResponseEntity<Object> handleInvalidOrganizationTypeException(
+            InvalidOrganizationTypeException ex, WebRequest request) {
+        Map<String, Object> response = ErrorResponse.errorResponse(ex.getMessage(), null);
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(InvalidProviderTypeException.class)
+    public ResponseEntity<Object> handleInvalidProviderTypeException(
+            InvalidProviderTypeException ex, WebRequest request) {
         Map<String, Object> response = ErrorResponse.errorResponse(ex.getMessage(), null);
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
