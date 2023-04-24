@@ -4,6 +4,7 @@ import com.thlogistic.organization.adapters.dtos.ErrorResponse;
 import com.thlogistic.organization.aop.exception.DataNotFoundException;
 import com.thlogistic.organization.aop.exception.InvalidOrganizationTypeException;
 import com.thlogistic.organization.aop.exception.InvalidProviderTypeException;
+import com.thlogistic.organization.aop.exception.UnauthorizedException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -44,6 +45,13 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
             InvalidProviderTypeException ex, WebRequest request) {
         Map<String, Object> response = ErrorResponse.errorResponse(ex.getMessage(), null);
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(UnauthorizedException.class)
+    public ResponseEntity<Object> handleUnauthorizedException(
+            UnauthorizedException ex, WebRequest request) {
+        Map<String, Object> response = ErrorResponse.errorResponse(ex.getMessage(), null);
+        return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
     }
 }
 
