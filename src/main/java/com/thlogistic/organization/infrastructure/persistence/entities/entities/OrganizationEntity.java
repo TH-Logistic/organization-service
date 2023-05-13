@@ -21,7 +21,12 @@ public class OrganizationEntity {
     OrganizationType type;
     ProviderType providerType;
 
-    public OrganizationEntity(String creditCard, String name, String contactName, String contactNumber, OrganizationType type, ProviderType providerType) {
+    public OrganizationEntity(String creditCard,
+                              String name,
+                              String contactName,
+                              String contactNumber,
+                              OrganizationType type,
+                              ProviderType providerType) {
         this.creditCard = creditCard;
         this.name = name;
         this.contactName = contactName;

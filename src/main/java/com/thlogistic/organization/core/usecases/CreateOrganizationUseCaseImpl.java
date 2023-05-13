@@ -25,8 +25,8 @@ public class CreateOrganizationUseCaseImpl implements CreateOrganizationUseCase 
         if (organizationType == OrganizationType.PROVIDER) {
             ProviderType providerType = ProviderType.fromInt(request.getProviderType());
             entity = new OrganizationEntity(
-                    request.getName(),
                     request.getCreditCard(),
+                    request.getName(),
                     request.getContactName(),
                     request.getContactNumber(),
                     organizationType,
@@ -34,8 +34,8 @@ public class CreateOrganizationUseCaseImpl implements CreateOrganizationUseCase 
             );
         } else {
             entity = new OrganizationEntity(
-                    request.getName(),
                     request.getCreditCard(),
+                    request.getName(),
                     request.getContactName(),
                     request.getContactNumber(),
                     organizationType,
