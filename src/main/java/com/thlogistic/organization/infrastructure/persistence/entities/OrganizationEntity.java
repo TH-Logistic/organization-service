@@ -1,4 +1,4 @@
-package com.thlogistic.organization.infrastructure.persistence.entities.entities;
+package com.thlogistic.organization.infrastructure.persistence.entities;
 
 import com.thlogistic.organization.core.entities.Organization;
 import com.thlogistic.organization.core.entities.OrganizationType;

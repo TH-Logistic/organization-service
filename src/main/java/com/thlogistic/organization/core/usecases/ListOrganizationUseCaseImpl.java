@@ -5,7 +5,7 @@ import com.thlogistic.organization.adapters.dtos.GetOrganizationResponse;
 import com.thlogistic.organization.adapters.dtos.ListOrganizationPagingRequest;
 import com.thlogistic.organization.adapters.repositories.BasePagingQueryResult;
 import com.thlogistic.organization.core.ports.OrganizationRepository;
-import com.thlogistic.organization.infrastructure.persistence.entities.entities.OrganizationEntity;
+import com.thlogistic.organization.infrastructure.persistence.entities.OrganizationEntity;
 import com.thlogistic.organization.mapper.OrganizationMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

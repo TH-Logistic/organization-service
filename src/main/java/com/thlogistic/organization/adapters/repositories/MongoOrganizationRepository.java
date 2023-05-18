@@ -2,7 +2,7 @@ package com.thlogistic.organization.adapters.repositories;
 
 
 import com.thlogistic.organization.core.entities.OrganizationType;
-import com.thlogistic.organization.infrastructure.persistence.entities.entities.OrganizationEntity;
+import com.thlogistic.organization.infrastructure.persistence.entities.OrganizationEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;

@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("api/v1/organization")
 interface OrganizationResource {
+    @GetMapping("/{id}")
+    ResponseEntity<Object> getOrganization(@PathVariable String id);
     @GetMapping("/list")
     ResponseEntity<Object> listOrganization(@Valid ListOrganizationPagingRequest request);
 

@@ -2,7 +2,7 @@ package com.thlogistic.organization.core.ports;
 
 
 import com.thlogistic.organization.adapters.repositories.BasePagingQueryResult;
-import com.thlogistic.organization.infrastructure.persistence.entities.entities.OrganizationEntity;
+import com.thlogistic.organization.infrastructure.persistence.entities.OrganizationEntity;
 
 import java.util.List;
 import java.util.Optional;
