@@ -2,8 +2,8 @@ package com.thlogistic.organization.interceptor;
 
 import com.thlogistic.organization.adapters.dtos.BaseResponse;
 import com.thlogistic.organization.aop.exception.UnauthorizedException;
-import com.thlogistic.organization.client.AuthorizationClient;
-import com.thlogistic.organization.client.PermissionDto;
+import com.thlogistic.organization.client.auth.AuthorizationClient;
+import com.thlogistic.organization.client.auth.PermissionDto;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;

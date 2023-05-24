@@ -1,7 +1,7 @@
 package com.thlogistic.organization.config;
 
-import com.fasterxml.jackson.databind.PropertyNamingStrategies;
-import com.thlogistic.organization.client.AuthorizationClient;
+import com.thlogistic.organization.client.auth.AuthorizationClient;
+import com.thlogistic.organization.client.billing.BillingClient;
 import feign.Feign;
 import feign.gson.GsonDecoder;
 import feign.gson.GsonEncoder;
@@ -10,15 +10,15 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
-import org.springframework.web.client.RestTemplate;
 
 @Configuration
 public class ApplicationConfig {
 
+    private static String httpPath = "http://";
     private static String domainUrl = System.getenv("DOMAIN_URL");
 
-    public static final String AUTHORIZATION_BASE_URL = "http://" + domainUrl + ":8000";
+    public static final String AUTHORIZATION_BASE_URL = httpPath + domainUrl + ":8000";
+    public static final String BILLING_BASE_URL = httpPath + domainUrl + ":8000";
 
     @Bean
     public AuthorizationClient authorizationClient() {
@@ -27,6 +27,15 @@ public class ApplicationConfig {
                 .encoder(new GsonEncoder())
                 .decoder(new GsonDecoder())
                 .target(AuthorizationClient.class, AUTHORIZATION_BASE_URL);
+    }
+
+    @Bean
+    public BillingClient billingClient() {
+        return Feign.builder()
+                .client(new OkHttpClient())
+                .encoder(new GsonEncoder())
+                .decoder(new GsonDecoder())
+                .target(BillingClient.class, BILLING_BASE_URL);
     }
 
     @Bean

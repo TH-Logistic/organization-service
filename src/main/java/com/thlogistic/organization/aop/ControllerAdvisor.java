@@ -1,10 +1,7 @@
 package com.thlogistic.organization.aop;
 
 import com.thlogistic.organization.adapters.dtos.ErrorResponse;
-import com.thlogistic.organization.aop.exception.DataNotFoundException;
-import com.thlogistic.organization.aop.exception.InvalidOrganizationTypeException;
-import com.thlogistic.organization.aop.exception.InvalidProviderTypeException;
-import com.thlogistic.organization.aop.exception.UnauthorizedException;
+import com.thlogistic.organization.aop.exception.*;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -52,6 +49,13 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
             UnauthorizedException ex, WebRequest request) {
         Map<String, Object> response = ErrorResponse.errorResponse(ex.getMessage(), null);
         return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler(CustomRuntimeException.class)
+    public ResponseEntity<Object> handleCustomRuntimeException(
+            CustomRuntimeException ex, WebRequest request) {
+        Map<String, Object> response = ErrorResponse.errorResponse(ex.getMessage(), null);
+        return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
 

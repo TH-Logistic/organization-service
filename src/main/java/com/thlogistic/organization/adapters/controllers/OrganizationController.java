@@ -1,10 +1,7 @@
 package com.thlogistic.organization.adapters.controllers;
 
 import com.thlogistic.organization.adapters.dtos.*;
-import com.thlogistic.organization.core.usecases.CreateOrganizationUseCase;
-import com.thlogistic.organization.core.usecases.GetOrganizationUseCase;
-import com.thlogistic.organization.core.usecases.ListOrganizationUseCase;
-import com.thlogistic.organization.core.usecases.UpdateOrganizationUseCase;
+import com.thlogistic.organization.core.usecases.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.util.Pair;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrganizationController extends BaseController implements OrganizationResource {
 
     private final GetOrganizationUseCase getOrganizationUseCase;
+    private final GetOrganizationDetailUseCase getOrganizationDetailUseCase;
     private final CreateOrganizationUseCase createOrganizationUseCase;
     private final UpdateOrganizationUseCase updateOrganizationUseCase;
     private final ListOrganizationUseCase listOrganizationUseCase;
@@ -22,6 +20,14 @@ public class OrganizationController extends BaseController implements Organizati
     @Override
     public ResponseEntity<Object> getOrganization(String id) {
         GetOrganizationResponse result = getOrganizationUseCase.execute(id);
+        return successResponse(result, null);
+    }
+
+    @Override
+    public ResponseEntity<Object> getOrganizationDetail(String token, String id) {
+        GetOrganizationDetailResponse result = getOrganizationDetailUseCase.execute(
+                new BaseTokenRequest<>(token, id)
+        );
         return successResponse(result, null);
     }
 
